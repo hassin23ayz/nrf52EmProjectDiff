@@ -3,27 +3,28 @@ ref_string="../../../config;../../../../../../components;../../../../../../compo
 ref_items = String.split(ref_string, ";")
 ref_items = ref_items |> Enum.sort()
 IO.puts("------------------ ref ---------------------------")
-#IO.puts(" num of elems in ref_items : #{Enum.count(ref_items)}" )
-Enum.each(ref_items, fn x -> IO.puts(x) end)
+#Enum.each(ref_items, fn x -> IO.puts(x) end)
 
 target_string="../../../config;../../../../../../components;../../../../../../components/boards;../../../../../../components/drivers_nrf/nrf_soc_nosd;../../../../../../components/libraries/atomic;../../../../../../components/libraries/balloc;../../../../../../components/libraries/bsp;../../../../../../components/libraries/button;../../../../../../components/libraries/experimental_section_vars;../../../../../../components/libraries/log;../../../../../../components/libraries/log/src;../../../../../../components/libraries/memobj;../../../../../../components/libraries/ringbuf;../../../../../../components/libraries/strerror;../../../../../../components/libraries/timer;../../../../../../components/libraries/util;../../../../../../components/toolchain/cmsis/include;../../..;../../../../../../external/fprintf;../../../../../../external/freertos/config;../../../../../../external/freertos/portable/CMSIS/nrf52;../../../../../../external/freertos/portable/GCC/nrf52;../../../../../../external/freertos/source/include;../../../../../../integration/nrfx;../../../../../../integration/nrfx/legacy;../../../../../../modules/nrfx;../../../../../../modules/nrfx/drivers/include;../../../../../../modules/nrfx/hal;../../../../../../modules/nrfx/mdk;../config;"
 target_items = String.split(target_string, ";")
 target_items = target_items |> Enum.sort()
 IO.puts("------------------ target ---------------------------")
-# IO.puts(" num of elems in target_items #{Enum.count(target_items)}" )
-Enum.each(target_items, fn x -> IO.puts(x) end)
+#Enum.each(target_items, fn x -> IO.puts(x) end)
 
 # concat the two list and prepare target items 
 concated_items      = ref_items ++ target_items 
 concated_uniq_items = concated_items |> Enum.uniq()
 concated_uniq_items = concated_uniq_items |> Enum.sort()
 IO.puts("------------------ concated_uniq ---------------------------")
-# IO.inspect(diff_items)
-Enum.each(concated_uniq_items, fn x -> IO.puts(x) end)
+# Enum.each(concated_uniq_items, fn x -> IO.puts(x) end)
 
 # added items 
 added_items = concated_uniq_items -- target_items
 added_items = added_items |> Enum.sort()
 IO.puts("------------------ added / diff---------------------------")
-# IO.inspect(diff_items)
-Enum.each(added_items, fn x -> IO.puts(x) end)
+# Enum.each(added_items, fn x -> IO.puts(x) end)
+
+# string to add
+added_items_string = Enum.join( added_items, ";")
+IO.puts("------------------ add string---------------------------")
+IO.puts(added_items_string)
